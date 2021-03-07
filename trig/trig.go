@@ -18,10 +18,6 @@ const (
 	radius = 200
 )
 
-func typeof(v interface{}) string {
-    return fmt.Sprintf("%T", v)
-}
-
 func run() {
 	cfg := pixelgl.WindowConfig{
 		Title:  "Beautiful Trigonometry",
@@ -83,7 +79,11 @@ func run() {
 
 		// Loop through chords
 		diagonals := [5]float64{-2.0, 0.0, 4.0, 2.6667, 8}
-		colors := [5]color.RGBA{colornames.Darkcyan, colornames.Darkmagenta, colornames.Cyan, colornames.Blueviolet, colornames.Cornflowerblue}
+		colors := [5]color.RGBA{colornames.Darkcyan,
+														colornames.Darkmagenta,
+														colornames.Cyan,
+														colornames.Blueviolet,
+														colornames.Cornflowerblue}
 
 		for d := 0; d < num_balls; d++ {
 			shift := 0.0
@@ -94,11 +94,13 @@ func run() {
 			// draw axis line
 			if show_lines {
 				imd.Color = pixel.RGB(0,0,0)
-				startx := math.Cos(shift) * radius
-				starty := math.Sin(shift) * radius
-				imd.Push(pixel.V(screenWidth/2 + startx, screenWidth/2 + starty), pixel.V(screenWidth/2-startx, screenWidth/2-starty))
+				startx := math.Cos(shift - math.Pi/2) * radius
+				starty := math.Sin(shift - math.Pi/2) * radius
+				imd.Push(pixel.V(screenWidth/2 + startx, screenHeight/2 + starty),
+									pixel.V(screenWidth/2-startx, screenHeight/2-starty))
 				imd.Line(2)
-				imd.Push(pixel.V(screenWidth/2+startx, screenWidth/2-starty), pixel.V(screenWidth/2-startx, screenWidth/2+starty))
+				imd.Push(pixel.V(screenWidth/2+startx, screenHeight/2-starty),
+									pixel.V(screenWidth/2-startx, screenHeight/2+starty))
 				imd.Line(2)
 			}
 
