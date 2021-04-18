@@ -12,7 +12,7 @@ let dslider;
 var pulses = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight/2);
 
   block1 = new Block(100, 20, 1, 0, 0);
   var m2 = pow(100,digits);
