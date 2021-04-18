@@ -12,18 +12,18 @@ let dslider;
 var pulses = [];
 
 function setup() {
-  createCanvas(windowWidth, 400);
-  
+  createCanvas(windowWidth, windowHeight);
+
   block1 = new Block(100, 20, 1, 0, 0);
   var m2 = pow(100,digits);
   block2 = new Block(300, 150, m2, vel/timeSteps, 20);
-  
+
   gph = new Graph(sqrt(m2)*vel);
- 
+
   vslider = createSlider(-10, -1, -2, 1);
   vslider.position(10, 10);
-  vslider.style('width', '80px');  
-  
+  vslider.style('width', '80px');
+
   dslider = createSlider(0, 4, 1, 1);
   dslider.position(10, 30);
   dslider.style('width', '80px');
@@ -36,7 +36,7 @@ function draw() {
   else if (digits != dslider.value()) {
     restartAll();
   }
-  
+
     background(20);
   if (block1.v < block2.v && block1.v > 0 && block2.v > 0 && block1.x+block1.w != block2.x && block1.x >= width){
 //     not gonna touch anymore
@@ -46,17 +46,17 @@ function draw() {
   fill(255);
   text('Velocity', 100, 25);
   text('Digits of Pi', 100, 45);
-  
+
   push();
   textSize(20);
   text('Collisions: ' + count, 20, 80);
   pop();
-  
+
   gph.show();
-  
-  
+
+
   for (let i = 0; i < timeSteps; i++) {
-    
+
     if (block1.collide(block2)) {
       const v1 = block1.bounce(block2);
       const v2 = block2.bounce(block1);
@@ -77,17 +77,17 @@ function draw() {
     block2.update();
   }
   pulsed = false;
-  
+
   block1.show();
   block2.show();
-  
+
   for (let p = 0; p < pulses.length; p++) {
     pulses[p].update();
 
     if (pulses[p].rad >= pulses[p].mag) {
       pulses.splice(p, 1)
     } else {
-     pulses[p].show(); 
+     pulses[p].show();
     }
   }
 }
@@ -95,19 +95,19 @@ function draw() {
 function addPulse(x, mag) {
   gph.update(block1.v, block2.v, block1.m, block2.m);
   if (!pulsed) {
-   pulses.push(new Pulse(x, mag)); 
+   pulses.push(new Pulse(x, mag));
   }
 }
 
 function restartAll() {
   vel = vslider.value();
   digits = dslider.value();
-  
+
   block1 = new Block(100, 20, 1, 0, 0);
   var m2 = pow(100,digits);
   block2 = new Block(300, 150, m2, vel/timeSteps, 20);
-  
+
   count = 0;
   gph = new Graph(sqrt(m2)*vel);
-  
+
 }
