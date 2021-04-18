@@ -12,7 +12,8 @@ let dslider;
 var pulses = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight/2);
+  var cnvs = createCanvas(windowWidth*0.8, windowHeight/2);
+  cnvs.parent('cnvs');
 
   block1 = new Block(100, 20, 1, 0, 0);
   var m2 = pow(100,digits);
@@ -21,12 +22,14 @@ function setup() {
   gph = new Graph(sqrt(m2)*vel);
 
   vslider = createSlider(-10, -1, -2, 1);
-  vslider.position(10, 10);
   vslider.style('width', '80px');
+  vslider.parent('cnvs');
+  vslider.position(cnvs.position().x+10, cnvs.position().y+10);
 
   dslider = createSlider(0, 4, 1, 1);
-  dslider.position(10, 30);
   dslider.style('width', '80px');
+  dslider.parent('cnvs');
+  dslider.position(cnvs.position().x+10, cnvs.position().y+30);
 }
 
 function draw() {
@@ -44,8 +47,8 @@ function draw() {
   }
   noStroke();
   fill(255);
-  text('Velocity', 100, 25);
-  text('Digits of Pi', 100, 45);
+  text('Velocity: ' + vel + ' m/s', 100, 25);
+  text('Digits of Pi: ' +(digits+1), 100, 45);
 
   push();
   textSize(20);
@@ -110,4 +113,11 @@ function restartAll() {
   count = 0;
   gph = new Graph(sqrt(m2)*vel);
 
+}
+
+function windowResized() {
+  // resizeCanvas(windowWidth, windowHeight);
+  vslider.remove();
+  dslider.remove();
+  setup();
 }

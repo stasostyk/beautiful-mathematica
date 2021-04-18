@@ -1,23 +1,23 @@
 class Graph {
   constructor(m) {
     this.x = width-150
-    this.y = 100;
+    this.y = 120;
     this.rad = 50;
     this.max = m;
     this.pos1 = 50;
     this.pos2 = 0;
     this.vert = [[this.x+this.pos1, this.y-this.pos2]];
-    
+
   }
-  
+
   update(v1, v2, m1, m2) {
     this.pos2 = map(sqrt(m1)*v1*100000, -this.max, this.max, -50, 50);
     this.pos1 = map(sqrt(m2)*v2*100000, -this.max, this.max, -50, 50);
     this.vert.push([this.x+this.pos1, this.y-this.pos2]);
   }
-  
+
   show() {
-    
+
     noFill();
     stroke(255);
     text('x=sqrt(m1)v1', this.x+60, this.y-10);

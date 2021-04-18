@@ -1,7 +1,17 @@
-html, body {
+body {
   margin: 0;
   padding: 0;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,255,46,1) 0%, rgba(8,8,109,1) 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 0%, rgba(10,89,87,1) 0%, rgba(9,77,75,1) 0%, rgba(255,0,108,1) 0%, rgba(0,82,255,1) 100%);
 }
 canvas {
   display: block;
+  margin: auto;
+}
+
+.desc {
+  color: white;
+  width: 70%;
+  text-align: center;
+  margin: auto;
 }
