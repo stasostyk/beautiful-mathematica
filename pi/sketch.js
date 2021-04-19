@@ -8,12 +8,14 @@ let vel = -2;
 let gph;
 let vslider;
 let dslider;
+var start = false;
 
 var pulses = [];
 
 function setup() {
   var cnvs = createCanvas(windowWidth*0.8, windowHeight/2);
   cnvs.parent('cnvs');
+  cnvs.mousePressed(click);
 
   block1 = new Block(100, 20, 1, 0, 0);
   var m2 = pow(100,digits);
@@ -51,9 +53,13 @@ function draw() {
   text('Digits of Pi: ' +(digits+1), 100, 45);
 
   push();
-  textSize(20);
-  text('Collisions: ' + count, 20, 80);
+  textSize(30);
+  text('Collisions: ' + count, 20, 90);
+  if (!start) {
+    text('Click to Start!', width/2, height/2);
+  }
   pop();
+
 
   gph.show();
 
@@ -76,6 +82,9 @@ function draw() {
       pulsed = true;
     }
 
+    if (!start) {
+      continue;
+    }
     block1.update();
     block2.update();
   }
@@ -93,6 +102,10 @@ function draw() {
      pulses[p].show();
     }
   }
+}
+
+function click() {
+  start = true;
 }
 
 function addPulse(x, mag) {
@@ -119,5 +132,6 @@ function windowResized() {
   // resizeCanvas(windowWidth, windowHeight);
   vslider.remove();
   dslider.remove();
+  count = 0;
   setup();
 }
