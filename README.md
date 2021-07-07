@@ -7,7 +7,16 @@ Trig really has nothing to do with triangles... its all just circles. Here is on
 
 ![Trig Demo](trig/trig_demo.jpg?raw=true "Trig Demo")
 
-How to use?
+### How to use?
 * download and double click on "trig.exe" in "builds"
 * left click to make the axis visible
 * right click to add moving balls
+
+## Calculating Pi with collisions
+Using perfectly elastic collisions, you can calculate the digits of π. The mathematical reason for this
+is visually demonstrated in the top right with the momentum of both objects plotted against each other. For a detailed explanation, [3B1B explains this quite well (using trigonometry!)](https://youtu.be/jsYwFizhncE)
+
+![Pi Demo](pi/pi_demo.png?raw=true "Pi Demo")
+
+### How to use?
+* Just go to https://stasostyk.github.io/beautiful-mathematica/pi/ (or better, check it out at https://phisics.tech/dynamics/pi/)
