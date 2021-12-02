@@ -4,11 +4,12 @@ let speed;
 let reset;
 let pause;
 let paused = false;
+let smoothify;
 
 // setup
 function setup() {
   createCanvas(700, 500);
-  
+
 //   declaring canvas elements
   terms = createSlider(1, 17);
   terms.position(10, 10);
@@ -20,6 +21,8 @@ function setup() {
   pause = createButton("Pause");
   pause.position(80, 70);
   pause.mouseClicked(pauseSim);
+  smoothify = createCheckbox('Smooth out timesteps', true);
+  smoothify.position(150, 70);
 }
 
 // time of animation
@@ -55,7 +58,14 @@ function draw() {
 
 //   move onto next frame
   if (t<terms.value()*2+1 && !paused) {
-    t += speed.value()/1000 + dt;
+    if (!smoothify.checked())
+//       slowly accelerating timstep
+      t += speed.value()/1000 + dt;
+    else {
+//       timstep is divided by modified coefficient factor, so the further progress to next term, the slower it will move to the next step
+      t += (speed.value()/1000 + dt) / ((((t-1)/2) % 1)*floor(t/4)+1);
+    }
+//     accelerates, because higher terms get boring to wait for
     dt += ddt;
   }
 
